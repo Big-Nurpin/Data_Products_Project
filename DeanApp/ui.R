@@ -40,7 +40,7 @@ shinyUI(fluidPage(
         mainPanel(
             p("Lets see how many miles your car will get per gallon."),
             textOutput("miles"),
-            p("Here's how your car compares to others.")
+            p("Here's how your car compares to others."),
             plotOutput("hist")
         )
     )

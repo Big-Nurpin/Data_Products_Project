@@ -1,11 +1,38 @@
 ---
-title: "Use My App"
+title: "The Miles per Gallon Predictifier"
 author: "Jeremy Dean"
 output: ioslides_presentation
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
+library(caret)
+library(randomForest)
 ```
 
-## 
+
+## Use & Target Market
+
+A cars' fuel efficiency is very important to the environment and consumers alike. This app is used to predict the miles per gallon of a car gets using ten predictors. This allows auto manufacturers to get an estimate on a new car's fuel economy before going into production.
+
+## The App
+Takes eleven inputs from the user starting with selecting the prediction model. It uses data from the mtcars data set.
+The predictors:
+
+- 7 slider inputs : displacement, horsepower, rear axle ratio, weight, quarter mile time, and carburetors.
+- 4 drop-down menus: model, cylinders, transmission type, and engine shape.
+- One numerical input for gears.
+
+The last two slides will contain code and summaries of the two prediction models.
+
+## The Models: Linear Regression
+```{r lm}
+linFit <- lm(mpg ~ . , data = mtcars)
+summary(linFit)$coefficients
+```
+
+## The Models: Random Forest
+```{r rf}
+rfFit <- train(mpg ~ . , data = mtcars, method = "rf")
+rfFit
+```

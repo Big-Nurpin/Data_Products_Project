@@ -1,4 +1,5 @@
 library(shiny)
+library(shinyhelper)
 
 shinyUI(fluidPage(
 
@@ -38,8 +39,12 @@ shinyUI(fluidPage(
         ),
 
         mainPanel(
+            helper(textOutput("help"), icon = "question-circle", colour = "red",
+                   type = "markdown", content = "README", size = "l"),
+            p(),
             p("Lets see how many miles your car will get per gallon."),
             textOutput("miles"),
+            p(),
             p("Here's how your car compares to others."),
             plotOutput("hist")
         )

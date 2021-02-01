@@ -1,5 +1,6 @@
 library(shiny)
 library(caret)
+library(randomForest)
 
 data(mtcars)
 
@@ -9,6 +10,11 @@ shinyServer(function(input, output) {
     mtcars$vs <- as.factor(mtcars$vs)
     mtcars$am <- as.factor(mtcars$am)
     mtcars$gear <- as.factor(mtcars$gear)
+    
+    output$help <- renderText("App Documentation")
+    observe_helpers(session = shiny::getDefaultReactiveDomain(),
+                    help_dir = "README", withMathJax = FALSE)
+    
     
     observeEvent(input$done, {
         newCar <- data.frame(cyl = as.factor(input$cyls), disp = input$displacement,
